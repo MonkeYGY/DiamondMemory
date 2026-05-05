@@ -1,0 +1,93 @@
+<h2>L4/L6 详情页排版方案</h2>
+<p class="subtitle">目标是解决“点开后密密麻麻一整段”的阅读问题。请比较哪种更适合长期阅读经验总结和技能内容。</p>
+
+<div class="cards">
+  <div class="card" data-choice="doc" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">方案 A: 文档式阅读</div>
+        <div class="mockup-body" style="background:#f8fafc;padding:14px;">
+          <div style="font-size:12px;color:#64748b;margin-bottom:10px;">L4 经验总结 · 记忆同步机制</div>
+          <div style="font-size:22px;font-weight:700;color:#0f172a;margin-bottom:10px;">记忆同步机制</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
+            <span style="background:#e2e8f0;padding:4px 8px;border-radius:999px;font-size:12px;">最近更新</span>
+            <span style="background:#e2e8f0;padding:4px 8px;border-radius:999px;font-size:12px;">分类</span>
+            <span style="background:#e2e8f0;padding:4px 8px;border-radius:999px;font-size:12px;">标签</span>
+          </div>
+          <div style="border-left:3px solid #94a3b8;padding-left:12px;margin-bottom:14px;color:#334155;font-size:13px;">
+            一句话摘要：系统通过上下行同步保持数据库与 Markdown 文件一致。
+          </div>
+          <div style="font-size:16px;font-weight:700;margin:10px 0 6px;">核心要点</div>
+          <ul style="margin:0 0 12px 18px;padding:0;font-size:13px;line-height:1.7;color:#334155;">
+            <li>下行导出时写入 frontmatter 和 memory_id</li>
+            <li>上行同步通过 mtime 和 MD5 检测变更</li>
+            <li>用户修改 Markdown 后会回写数据库</li>
+          </ul>
+          <div style="font-size:16px;font-weight:700;margin:10px 0 6px;">详细记录</div>
+          <div style="font-size:13px;line-height:1.85;color:#334155;">
+            按自然段展示正文，标题、列表、引用和分隔线都保留，整体像在阅读一篇整理过的文档。
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>方案 A: 文档式阅读</h3>
+      <p>更像 Markdown 文档阅读器，适合长篇经验总结和技能沉淀，正文连续感强。</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="card" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="mockup">
+        <div class="mockup-header">方案 B: 卡片分块式阅读</div>
+        <div class="mockup-body" style="background:#f8fafc;padding:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+            <div style="font-size:20px;font-weight:700;color:#0f172a;">记忆同步机制</div>
+            <div style="background:#dbeafe;color:#1d4ed8;padding:4px 10px;border-radius:999px;font-size:12px;">L4</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+            <div style="background:white;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;">时间 / 来源 / 分类</div>
+            <div style="background:white;border:1px solid #e2e8f0;border-radius:10px;padding:10px;font-size:12px;">标签 / 置信度 / 关联项</div>
+          </div>
+          <div style="background:white;border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:10px;">
+            <div style="font-size:11px;color:#64748b;margin-bottom:4px;">摘要</div>
+            <div style="font-size:13px;color:#0f172a;">一句话先说清这条经验在解决什么问题。</div>
+          </div>
+          <div style="background:white;border:1px solid #e2e8f0;border-radius:10px;padding:12px;margin-bottom:10px;">
+            <div style="font-size:11px;color:#64748b;margin-bottom:6px;">关键要点</div>
+            <div style="font-size:13px;line-height:1.7;color:#334155;">每个 section 独立成卡片，更容易扫读。</div>
+          </div>
+          <div style="background:white;border:1px solid #e2e8f0;border-radius:10px;padding:12px;">
+            <div style="font-size:11px;color:#64748b;margin-bottom:6px;">详细正文</div>
+            <div style="font-size:13px;line-height:1.7;color:#334155;">正文被拆进多个模块，更适合快速浏览，但长文沉浸感略弱。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>方案 B: 卡片分块式阅读</h3>
+      <p>信息更结构化，扫读快，适合频繁查看；但长文阅读的连贯性会弱一些。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>我当前推荐</h4>
+      <ul>
+        <li>默认采用方案 A 作为正文主阅读区</li>
+        <li>吸收方案 B 的“摘要卡 + 元信息卡”放在正文顶部</li>
+        <li>也就是“上面分块，下面文档”混合版</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>主要权衡</h4>
+      <ul>
+        <li>纯文档式：长文舒服，但扫读略慢</li>
+        <li>纯卡片式：扫读快，但容易碎</li>
+        <li>混合版能兼顾经验总结与技能阅读</li>
+      </ul>
+    </div>
+  </div>
+</div>

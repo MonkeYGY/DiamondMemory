@@ -1,0 +1,43 @@
+{
+  "name": "diamond-memory",
+  "version": "0.4.0",
+  "description": "钻石记忆系统 - 跨平台桌面应用",
+  "main": "dist/main/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "electron:build-main": "tsc -p tsconfig.electron.json",
+    "electron:build-preload": "tsc -p tsconfig.preload.json",
+    "electron:build-all": "npm run electron:build-main && npm run electron:build-preload && npm run build && electron-builder",
+    "electron:build:mac": "npm run electron:build-main && npm run electron:build-preload && npm run build && electron-builder --mac",
+    "electron:build:win": "npm run electron:build-main && npm run electron:build-preload && npm run build && electron-builder --win",
+    "electron:build:linux": "npm run electron:build-main && npm run electron:build-preload && npm run build && electron-builder --linux",
+    "electron:dev": "concurrently \"vite\" \"npm run electron:build-main && npm run electron:build-preload && wait-on http://localhost:5173 && electron .\"",
+    "backend:build": "bash ../scripts/build-backend.sh",
+    "backend:build:win": "..\\scripts\\build-backend.bat"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.1",
+    "electron-updater": "^6.8.3",
+    "marked": "^18.0.2",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "concurrently": "^8.2.2",
+    "electron": "^29.1.4",
+    "electron-builder": "^24.13.3",
+    "jsdom": "^26.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "terser": "^5.46.2",
+    "typescript": "^5.4.3",
+    "vite": "^5.2.8",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^2.0.7",
+    "wait-on": "^7.2.0"
+  }
+}

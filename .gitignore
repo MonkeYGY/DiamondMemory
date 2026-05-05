@@ -1,0 +1,83 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+.venv/
+.env
+.env.local
+.env.production
+*.egg-info/
+dist/
+build/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+*.db
+*.db-shm
+*.db-wal
+*.pkl
+storage_config.json
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+
+# Electron
+out/
+
+# Build artifacts
+dist/
+build/
+*.o
+*.a
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Data (if contains sensitive info)
+# data/
+
+# QA Test artifacts
+# qa-test/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.Trash-*
+
+# System
+xcuserdata/
+.DS_Store
+
+# Version optimization records (keep these)
+# 版本优化记录/
+
+# Project backups (exclude from git)
+项目备份/
+
+# Ollama models (large files)
+build/ollama/

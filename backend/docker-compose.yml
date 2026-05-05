@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  diamond-memory-backend:
+    build: .
+    container_name: diamond-memory-backend
+    ports:
+      - "15920:15920"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - DATABASE_PATH=/app/data/memory.db
+      - ENABLE_BGE_RERANKER=true
+      - LOCAL_LLM_ENDPOINT=http://host.docker.internal:11434
+    restart: unless-stopped
+    # 宿主机 Ollama 网络互通
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

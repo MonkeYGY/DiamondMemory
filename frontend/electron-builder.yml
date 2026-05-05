@@ -1,0 +1,104 @@
+appId: com.diamondmemory.app
+productName: 钻石记忆系统
+
+publish:
+  - provider: generic
+    url: 'https://your-update-server.com/releases/'
+    channel: latest
+
+directories:
+  output: ../dist/electron
+  buildResources: ../build
+
+files:
+  - dist/**/*
+  - "!**/*.ts"
+  - "!**/*.map"
+  - "!src/**/*"
+
+mac:
+  target:
+    - target: dmg
+      arch: ['x64']
+    - target: dmg
+      arch: ['arm64']
+    - target: zip
+      arch: ['x64']
+    - target: zip
+      arch: ['arm64']
+  category: public.app-category.productivity
+  icon: ../build/icons/icon.icns
+  asar: true
+  asarUnpack:
+    - "**/*.node"
+  extraResources:
+    - from: ../dist/backend/main.dist/
+      to: backend/
+      filter:
+        - "**/*"
+    - from: ../build/ollama/mac/
+      to: ollama/
+      filter:
+        - "**/*"
+  extendInfo:
+    NSAppleEventsUsageDescription: 'Please grant access to use Apple Events'
+    NSRequiresAquaSystemAppearance: false
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  # entitlements 文件位于 frontend/build/ 下（而不是项目根目录 build/）
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  notarize: false
+
+dmg:
+  title: "${productName} ${version}"
+  artifactName: "${productName}-${version}-mac-${arch}.${ext}"
+  window:
+    width: 540
+    height: 380
+
+win:
+  target:
+    - target: nsis
+      arch: ['x64']
+    - target: portable
+      arch: ['x64']
+  icon: ../build/icons/icon.ico
+  asar: true
+  asarUnpack:
+    - "**/*.node"
+  extraResources:
+    - from: ../dist/backend/
+      to: backend/
+      filter:
+        - "**/*"
+    - from: ../build/ollama/win/
+      to: ollama/
+      filter:
+        - "**/*"
+  publisherName: DiamondMemory
+  verifyUpdateCodeSignature: false
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: 钻石记忆系统
+  installerIcon: ../build/icons/icon.ico
+  uninstallerIcon: ../build/icons/icon.ico
+  artifactName: "${productName}-${version}-setup.${ext}"
+  include: build/nsis-uninstaller.nsh
+
+portable:
+  artifactName: "${productName}-${version}-portable.${ext}"
+
+linux:
+  target:
+    - AppImage
+    - deb
+  icon: ../build/icons/
+  category: Utility
+  artifactName: "${productName}-${version}-linux-${arch}.${ext}"
