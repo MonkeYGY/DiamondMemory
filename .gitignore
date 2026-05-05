@@ -57,24 +57,24 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Data (if contains sensitive info)
-# data/
+# Internal dev docs (not for open source)
+docs/
+DM开发辅助/
+版本优化记录/
+参考UI/
+PROJECT_OPERATIONS.md
+PROJECT_TESTING_GUIDE.md
 
-# QA Test artifacts
-# qa-test/
+# QA test artifacts
+qa-test/
 
-# Temporary files
-*.tmp
-*.temp
-.cache/
-.Trash-*
+# Marketing materials
+website/
+钻石记忆系统抖音短视频口播脚本.md
+钻石logo/
 
-# System
-xcuserdata/
-.DS_Store
-
-# Version optimization records (keep these)
-# 版本优化记录/
+# Analysis docs
+c_记忆系统深度分析与优化方案.md
 
 # Project backups (exclude from git)
 项目备份/
